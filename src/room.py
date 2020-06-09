@@ -1,6 +1,6 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
-from textwrap import wrap
+from textwrap import fill
 
 
 class Room:
@@ -13,7 +13,7 @@ class Room:
         self.w_to = None
 
     def __str__(self):
-        return f"{self.name}\n{wrap(self.description)}"
+        return f"{self.name}\n{fill(self.description)}"
 
     def __repr__(self):
         return f"{self.name}: [description={self.description}]"

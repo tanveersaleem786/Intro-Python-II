@@ -1,7 +1,15 @@
 from room import Room
 from player import Player
 
+# Helper functions
+
+
+def isValidInput(input):
+    cmd_list = ["q", "n", "s", "e", "w"]
+    return any(cmd for cmd in cmd_list if cmd == input)
+
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -51,4 +59,17 @@ player = Player(room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-print(player)
+
+while True:
+    print("========== ========== ==========")
+    print(str(player) + "\n")
+    player_cmd = input("What would you like to do (q to quit)? ").lower()
+    print("========== ========== ==========\n\n")
+
+    if isValidInput(player_cmd):
+        if (player_cmd == "q"):
+            break
+
+        print("-- command received --")
+    else:
+        print("I'm sorry, I don't understand what you mean")
