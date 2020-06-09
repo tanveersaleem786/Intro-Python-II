@@ -5,7 +5,7 @@ class Player:
         self.current_room = current_room
 
     def __str__(self):
-        return f"Player: [current_room={self.current_room}]"
+        return str(self.current_room)
 
     def __repr__(self):
         return f"Player: [current_room={self.current_room}]"
