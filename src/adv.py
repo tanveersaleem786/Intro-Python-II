@@ -87,10 +87,3 @@ while user_playing:
         compass(player, user_input)
     elif user_input.lower() == 'w':
         compass(player, user_input)
-
-    #     if player.room.connect is not None:
-    #         player.move(user_input)
-    #         print("You're now in ", player.room.name)
-
-    # else:
-    #     print("Please choose one of the following options: (N) North | (S) South | (E) East | (W) West | (Q) Quit")
