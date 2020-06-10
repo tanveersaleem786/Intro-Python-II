@@ -58,13 +58,13 @@ commands = {
 
 # Declare the items
 items = {
-    "torch": Item("Torch", "A rustic wooden handle wrapped in silk."),
-    "gold": Item("Gold Ore", "Unrefined, but still worth the time and effort to get."),
-    "whip": Item("Whip", """A long, strong, whip made of leather. It's perfect for 
+    "torch": Item(("torch"), "Torch", "A rustic wooden handle wrapped in silk."),
+    "gold": Item(("gold", "gold ore", "ore"), "Gold Ore", "Unrefined, but still worth the time and effort to get."),
+    "whip": Item(("whip"), "Whip", """A long, strong, whip made of leather. It's perfect for 
 swinging across gaps."""),
-    "pickaxe": Item("Pickaxe", "A heafty tool used for mining ore."),
-    "item5": Item("Item 05", "some item"),
-    "item6": Item("Item 06", "maybe it's nothing"),
+    "pickaxe": Item(("pick", "pickaxe"), "Pickaxe", "A heafty tool used for mining ore."),
+    "item5": Item(("item5"), "Item 05", "some item"),
+    "item6": Item(("item6"), "Item 06", "maybe it's nothing"),
 }
 
 # Declare all the rooms

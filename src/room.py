@@ -31,9 +31,8 @@ class Room:
         return f"Room: [name={self.name}, description={self.description}]"
 
     def find_item(self, item_name: str):
-        result = [item for item in self.items_list if
-                  item.name.lower() == item_name]
-        return result[0] or None
+        result = [item for item in self.items_list if item_name in item.alias_list]
+        return result[0] if len(result) > 0 else None
 
     def add_item(self, item: Item):
         pass

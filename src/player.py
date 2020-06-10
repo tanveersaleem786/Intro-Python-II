@@ -42,8 +42,9 @@ class Player:
         item = self.current_room.find_item(item_name)
 
         if item:
+            # are there prerequest ot get this item
             self.current_room.remove_item(item)
             self.inventory.append(item)
-            print(f"You pickup the {item_name}")
+            print(f"You pickup the {item.name}")
         else:
             print(f"There is no {item_name} here!")
