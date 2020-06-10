@@ -11,3 +11,15 @@ class Item:
 
     def __repr__(self):
         return f"Item: [name={self.name}, description={self.description}]"
+
+    def __eq__(self, other):
+        if not(isinstance(other, (Item))):
+            return False
+
+        if other.name != self.name:
+            return False
+
+        if other.description != self.description:
+            return False
+
+        return True

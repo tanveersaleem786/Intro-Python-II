@@ -34,12 +34,16 @@ class Player:
 
     def take(self, *command):
         cmd_str, item_name = command
+
+        if not(item_name):
+            print("Umm! You picked up nothing... Congratulations!")
+            return
+
         item = self.current_room.find_item(item_name)
 
         if item:
-            self.inventory.append(item)
             self.current_room.remove_item(item)
-
+            self.inventory.append(item)
             print(f"You pickup the {item_name}")
         else:
             print(f"There is no {item_name} here!")

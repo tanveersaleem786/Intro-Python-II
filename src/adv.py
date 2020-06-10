@@ -15,22 +15,18 @@ def clear():
         _ = system('clear')
 
 
-def is_valid_input(verb: str, noun: str = ""):
-    if not(verb):
+def is_valid_input(command: str, obj: str = "", *ignore_these):
+    if not(command):
         return False
 
     cmd_list = commands.keys()
-    item_list = items.keys()
-    good_cmd = any(cmd for cmd in cmd_list if cmd == verb)
-    good_item = any(item for item in item_list if item ==
-                    noun) if noun else True
-    return good_cmd and good_item
+    return command in cmd_list
 
 
-def parse(player: Player, noun: str, verb: str = ""):
+def parse(player: Player, cmd: str, obj: str = "", *ignore_these):
     # execute the command
-    if commands[noun]:
-        commands[noun](player, noun, verb)
+    if commands[cmd]:
+        commands[cmd](player, cmd, obj)
 
 
 def evaluate(player: Player, user_input: str):
@@ -52,6 +48,8 @@ def evaluate(player: Player, user_input: str):
 commands = {
     "quit": None,
     "q": None,
+    "get": Player.take,
+    "take": Player.take,
     "n": Player.move,
     "e": Player.move,
     "s": Player.move,
