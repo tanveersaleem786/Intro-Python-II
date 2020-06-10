@@ -1,6 +1,7 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 from textwrap import fill
+from item import Item
 
 
 class Room:
@@ -28,3 +29,17 @@ class Room:
 
     def __repr__(self):
         return f"Room: [name={self.name}, description={self.description}]"
+
+    def find_item(self, item_name: str):
+        result = [item for item in self.items_list if item.name == item_name]
+
+        if result:
+            return result[0]
+        else:
+            return None
+
+    def add_item(self, item: Item):
+        pass
+
+    def remove_item(self, item: Item):
+        self.items_list.remove(item)
