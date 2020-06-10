@@ -4,10 +4,10 @@ from room import Room
 # currently.
 
 
-class Player():
-    def __init__(self, name, room):
-        self.name = name
-        self.room = room
+class Player:
+    def __init__(self, location):
+        # self.name = name
+        self.location = location
 
     # def move(self, direction):
     #     if self.room.connect[direction] is not None:

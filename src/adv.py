@@ -42,7 +42,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player("Blair", room["outside"])
+# player = Player("Blair", room["outside"])
 
 # Write a loop that:
 #
@@ -59,31 +59,47 @@ player = Player("Blair", room["outside"])
 def compass(player, direction):
     attr = direction + '_to'
 
-    if hasattr(player.room, attr):
-        player.room = getattr(player.room, attr)
+    if hasattr(player.location, attr):
+        player.location = getattr(player.location, attr)
     else:
         print("You can't go that direction")
 
 
-player = Player("Blair", room["outside"])
+player = Player(room["outside"])
 
 
 user_playing = True
 
-while user_playing:
-    print(player.room.name)
-    for desc in textwrap.wrap(player.room.description, width=150):
-        print(desc)
-
+while True:
+    #
+    # * Prints the current room name
+    # * Prints the current description (the textwrap module might be useful here).
+    print("\n")
+    print(player.location)
+    # * Waits for user input and decides what to do.
     user_input = input(
-        "(N) North | (S) South | (E) East | (W) West | (Q) Quit\n")
-    print(f"You chose the following direction: {user_input}")
+        "\nEnter (n), (s), (e), (w) or (q) to: ").strip().lower().split()
+    # first_first_char = first_char[0]
+    # first_char = first_first_char[0]
+    # If the user enters "q", quit the game.
+    if user_input[0] == 'q':
+        break
+    #
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    # Print an error message if the movement isn't allowed.
+    # User can enter 'north', 'south', 'east', 'west', or just allow them to
+    # enter 'n', 's', 'e', 'w' in order to move
+    # strip off everything but the first char
 
-    if user_input.lower() == 'n':
-        compass(player, user_input)
-    elif user_input.lower() == 's':
-        compass(player, user_input)
-    elif user_input.lower() == 'e':
-        compass(player, user_input)
-    elif user_input.lower() == 'w':
-        compass(player, user_input)
+    if user_input[0] == 'n':
+        # move to the north
+        compass(player, user_input[0])
+    elif user_input[0] == 's':
+        # move to the south
+        compass(player, user_input[0])
+    elif user_input[0] == 'e':
+        # move to the east
+        compass(player, user_input[0])
+    elif user_input[0] == 'w':
+        # move to the west
+        compass(player, user_input[0])
