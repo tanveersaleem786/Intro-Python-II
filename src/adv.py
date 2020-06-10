@@ -15,41 +15,33 @@ def clear():
         _ = system('clear')
 
 
-def is_valid_input(user_input: list):
-    if len(user_input) < 1 or len(user_input) > 2:
+def is_valid_input(verb: str, noun: str = ""):
+    if not(verb):
         return False
 
     cmd_list = commands.keys()
     item_list = items.keys()
-    verb = user_input[0]
-    noun = ""
-
-    if len(user_input) == 2:
-        noun = user_input[1]
-
     good_cmd = any(cmd for cmd in cmd_list if cmd == verb)
     good_item = any(item for item in item_list if item ==
                     noun) if noun else True
     return good_cmd and good_item
 
 
-def parse(player: Player, user_input: str):
+def parse(player: Player, noun: str, verb: str = ""):
     # execute the command
-    if commands[user_input]:
-        commands[user_input](player, user_input)
+    if commands[noun]:
+        commands[noun](player, noun, verb)
 
 
 def evaluate(player: Player, user_input: str):
     is_game_over = False
 
-    user_input = user_input.strip()
-    input_list = user_input.split(" ", 2)
-    if is_valid_input(input_list):
-        if (user_input == "q" or user_input == "quit"):
+    input_list = user_input.strip().split(" ", 2)
+    if is_valid_input(*input_list):
+        if (input_list[0] == "q" or input_list[0] == "quit"):
             is_game_over = True
 
-        # print(f"-- command received: '{user_input}' --")
-        parse(player, user_input)
+        parse(player, *input_list)
     else:
         print("I'm sorry, I don't understand what you mean")
 
@@ -127,6 +119,7 @@ player = Player(room["outside"])
 # If the user enters "q", quit the game.
 is_game_over = False
 
+clear()
 while not(is_game_over):
     print("========== ========== ==========")
     print(str(player) + "\n")
