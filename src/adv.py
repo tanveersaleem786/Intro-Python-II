@@ -78,10 +78,7 @@ while True:
     print(player.location)
     # * Waits for user input and decides what to do.
     user_input = input(
-        "\nEnter (n), (s), (e), (w) or (q) to: ").strip().lower().split()
-    # first_first_char = first_char[0]
-    # first_char = first_first_char[0]
-    # If the user enters "q", quit the game.
+        "\nEnter (n), (s), (e), (w) or (q) to: ").lower()
     if user_input[0] == 'q':
         break
     #
