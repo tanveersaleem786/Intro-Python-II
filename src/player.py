@@ -3,15 +3,13 @@
 class Player:
     
 
-    def __init__(self, name, description):
+    def __init__(self, name, current_room):
         self.name = name
-        self.description = description
+        self.current_room = current_room
 
         
-    def __str__(self):
-        return f'self.name = {self.name} \nself.description = {self.description}'
+   # def __str__(self):
+    #    return f'self.name = {self.name} \nself.current_room = {self.current_room}'
 
 
-myPlayer = Player("Player A", "I am Player A")
 
-print(myPlayer)
