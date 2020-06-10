@@ -1,15 +1,7 @@
 from os import system, name
-from room import Room
 from player import Player
-
-cmd_lookup = {
-    "quit": None,
-    "q": None,
-    "n": Player.move,
-    "e": Player.move,
-    "s": Player.move,
-    "w": Player.move,
-}
+from room import Room
+from item import Item
 
 
 # Helper Functions
@@ -23,21 +15,36 @@ def clear():
         _ = system('clear')
 
 
-def is_valid_input(user_input: str):
-    cmd_list = cmd_lookup.keys()
-    return any(cmd for cmd in cmd_list if cmd == user_input)
+def is_valid_input(user_input: list):
+    if len(user_input) < 1 or len(user_input) > 2:
+        return False
+
+    cmd_list = commands.keys()
+    item_list = items.keys()
+    verb = user_input[0]
+    noun = ""
+
+    if len(user_input) == 2:
+        noun = user_input[1]
+
+    good_cmd = any(cmd for cmd in cmd_list if cmd == verb)
+    good_item = any(item for item in item_list if item ==
+                    noun) if noun else True
+    return good_cmd and good_item
 
 
 def parse(player: Player, user_input: str):
     # execute the command
-    if cmd_lookup[user_input]:
-        cmd_lookup[user_input](player, user_input)
+    if commands[user_input]:
+        commands[user_input](player, user_input)
 
 
 def evaluate(player: Player, user_input: str):
     is_game_over = False
 
-    if is_valid_input(user_input):
+    user_input = user_input.strip()
+    input_list = user_input.split(" ", 2)
+    if is_valid_input(input_list):
         if (user_input == "q" or user_input == "quit"):
             is_game_over = True
 
@@ -49,10 +56,31 @@ def evaluate(player: Player, user_input: str):
     return is_game_over
 
 
+# Available commands
+commands = {
+    "quit": None,
+    "q": None,
+    "n": Player.move,
+    "e": Player.move,
+    "s": Player.move,
+    "w": Player.move,
+}
+
+# Declare the items
+items = {
+    "torch": Item("Torch", "A rustic wooden handle wrapped in silk."),
+    "gold": Item("Gold Ore", "Unrefined, but still worth the time and effort to get."),
+    "whip": Item("Whip", """A long, strong, whip made of leather. It's perfect for 
+swinging across gaps."""),
+    "pickaxe": Item("Pickaxe", "A heafty tool used for mining ore."),
+    "item5": Item("Item 05", "some item"),
+    "item6": Item("Item 06", "maybe it's nothing"),
+}
+
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", [items["torch"], items["whip"]]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -62,11 +90,11 @@ into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", [items["gold"]]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", [items["pickaxe"], items["item5"], items["item6"]]),
 }
 
 
