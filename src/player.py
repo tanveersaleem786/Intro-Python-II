@@ -1,13 +1,13 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from room import Room
-from item import Item
+from inventory import Inventory
 
 
 class Player:
-    def __init__(self, current_room: Room):
+    def __init__(self, current_room: Room, *items):
         self.current_room: Room = current_room
-        self.inventory: list = []
+        self.inventory: Inventory = Inventory(list(items))
 
     def __str__(self):
         return str(self.current_room)
@@ -36,18 +36,6 @@ class Player:
         else:
             print("Sorry, you can't go in that direction")
 
-    def search_inventory(self, item_name: str):
-        result = [item for item in self.inventory if item_name in item.alias_list]
-        return result[0] if len(result) > 0 else None
-
-    def remove_item(self, item_name: str):
-        item = self.search_inventory(item_name)
-
-        if item:
-            self.inventory.remove(item)
-
-        return item
-
     def take(self, *command):
         cmd_str, item_name = command
 
@@ -57,7 +45,7 @@ class Player:
 
         item_from_room = self.current_room.remove_item(item_name)
         if item_from_room:
-            self.inventory.append(item_from_room)
+            self.inventory.add_item(item_from_room)
             item_from_room.on_take()
         else:
             print(f"There is no {item_name} here!")
@@ -69,7 +57,7 @@ class Player:
             print("Umm! You need to choose something to drop.")
             return
 
-        item_dropped = self.remove_item(item_name)
+        item_dropped = self.inventory.remove_item(item_name)
         if item_dropped:
             self.current_room.add_item(item_dropped)
             item_dropped.on_drop()
