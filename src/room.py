@@ -35,7 +35,7 @@ class Room:
         return result[0] if len(result) > 0 else None
 
     def add_item(self, item: Item):
-        pass
+        self.items_list.append(item)
 
     def remove_item(self, item_name: str):
         item = self.find_item(item_name)

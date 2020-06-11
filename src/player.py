@@ -36,6 +36,18 @@ class Player:
         else:
             print("Sorry, you can't go in that direction")
 
+    def search_inventory(self, item_name: str):
+        result = [item for item in self.inventory if item_name in item.alias_list]
+        return result[0] if len(result) > 0 else None
+
+    def remove_item(self, item_name: str):
+        item = self.search_inventory(item_name)
+
+        if item:
+            self.inventory.remove(item)
+
+        return item
+
     def take(self, *command):
         cmd_str, item_name = command
 
@@ -49,3 +61,17 @@ class Player:
             item_from_room.on_take()
         else:
             print(f"There is no {item_name} here!")
+
+    def drop(self, *command):
+        cmd_str, item_name = command
+
+        if not(item_name):
+            print("Umm! You need to choose something to drop.")
+            return
+
+        item_dropped = self.remove_item(item_name)
+        if item_dropped:
+            self.current_room.add_item(item_dropped)
+            item_dropped.on_drop()
+        else:
+            print(f"You don't have a {item_name}!")

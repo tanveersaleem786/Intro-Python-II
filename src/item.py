@@ -30,3 +30,6 @@ class Item:
 
     def on_take(self):
         print(f"You pickup the {self.name}")
+
+    def on_drop(self):
+        print(f"You drop the {self.name}")

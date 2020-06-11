@@ -52,6 +52,8 @@ commands = {
     "take": Player.take,
     "pickup": Player.take,
     "grab": Player.take,
+    "drop": Player.drop,
+    "remove": Player.drop,
     "n": Player.move,
     "north": Player.move,
     "e": Player.move,
