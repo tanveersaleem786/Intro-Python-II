@@ -68,3 +68,10 @@ overlook.s_to = foyer
 narrow.w_to = foyer
 narrow.n_to = treasure
 treasure.s_to = narrow
+
+# Extra items
+sword = Item(
+    "Elven Sword",
+    "Finely crafted, and extremely sharp",
+    "sword", "blade"
+)

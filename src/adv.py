@@ -1,6 +1,6 @@
 from os import system, name
 from game_commands import commands
-from game_objects import outside
+from game_objects import outside, sword
 from player import Player
 
 
@@ -49,7 +49,7 @@ def evaluate(player: Player, user_input: str):
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(outside)
+player = Player(outside, sword)
 
 # Write a loop that:
 #
