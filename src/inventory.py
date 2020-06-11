@@ -23,11 +23,11 @@ class Inventory:
     def __len__(self):
         return len(self.items_list)
 
-    def search_items(self, item_name: str):
+    def search_items(self, item_name: str) -> Item:
         result = [item for item in self.items_list if item_name in item.alias_list]
         return result[0] if len(result) > 0 else None
 
-    def remove_item(self, item_name: str):
+    def remove_item(self, item_name: str) -> Item:
         item = self.search_items(item_name)
 
         if item:
