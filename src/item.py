@@ -2,7 +2,7 @@ from textwrap import fill
 
 
 class Item:
-    def __init__(self, alias_list: tuple, name: str, description: str):
+    def __init__(self, name: str, description: str, *alias_list):
         self.alias_list = alias_list
         self.name = name
         self.description = description
