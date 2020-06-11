@@ -42,6 +42,6 @@ class Player:
         item_from_room = self.current_room.remove_item(item_name)
         if item_from_room:
             self.inventory.append(item_from_room)
-            print(f"You pickup the {item_from_room.name}")
+            item_from_room.on_take()
         else:
             print(f"There is no {item_name} here!")

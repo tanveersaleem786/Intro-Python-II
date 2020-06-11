@@ -27,3 +27,6 @@ class Item:
             return False
 
         return True
+
+    def on_take(self):
+        print(f"You pickup the {self.name}")
