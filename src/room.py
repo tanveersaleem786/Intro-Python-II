@@ -37,6 +37,10 @@ class Room:
     def add_item(self, item: Item):
         pass
 
-    def remove_item(self, item: Item):
-        self.items_list.remove(item)
-        print(f"Removed {item.name}")
+    def remove_item(self, item_name: str):
+        item = self.find_item(item_name)
+
+        if item:
+            self.items_list.remove(item)
+
+        return item
