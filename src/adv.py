@@ -48,6 +48,8 @@ def evaluate(player: Player, user_input: str):
 commands = {
     "quit": None,
     "q": None,
+    "i": Player.show_inventory,
+    "inventory": Player.show_inventory,
     "get": Player.take,
     "take": Player.take,
     "pickup": Player.take,
@@ -68,9 +70,16 @@ commands = {
 outside = Room(
     "Outside Cave Entrance",
     "North of you, the cave mouth beckons",
-    Item(("torch"), "Torch", "A rustic wooden handle wrapped in silk."),
-    Item(("whip"), "Whip",
-         "A long, strong, cord made of leather. It's perfect for swinging across gaps.")
+    Item(
+        "Torch",
+        "A rustic wooden handle wrapped in silk.",
+        "torch"
+    ),
+    Item(
+        "Whip",
+        "A long, strong, cord made of leather. It's perfect for swinging across gaps.",
+        "whip"
+    )
 )
 foyer = Room(
     "Foyer",
@@ -84,16 +93,31 @@ a light flickers in the distance, but there is no way across the chasm."""
 narrow = Room(
     "Narrow Passage",
     "The narrow passage bends here from west to north. The smell of gold permeates the air.",
-    Item(("gold", "gold ore", "ore"), "Gold Ore",
-         "Unrefined, but still worth the time and effort to get.")
+    Item(
+        "Gold Ore",
+        "Unrefined, but still worth the time and effort to get.",
+        "gold", "gold ore", "ore"
+    )
 )
 treasure = Room(
     "Treasure Chamber",
     """You've found the long-lost treasure chamber! Sadly, it has already been completely 
 emptied by earlier adventurers. The only exit is to the south.""",
-    Item(("pick", "pickaxe"), "Pickaxe", "A heafty tool used for mining ore."),
-    Item(("item5"), "Item 05", "some item"),
-    Item(("item6"), "Item 06", "maybe it's nothing")
+    Item(
+        "Pickaxe",
+        "A heafty tool used for mining ore.",
+        "pick", "pickaxe"
+    ),
+    Item(
+        "Item 05",
+        "some item",
+        "item5"
+    ),
+    Item(
+        "Item 06",
+        "maybe it's nothing",
+        "item6"
+    )
 )
 
 # Link rooms together
@@ -128,11 +152,12 @@ is_game_over = False
 clear()
 while not(is_game_over):
     print("========== ========== ==========")
-    print(str(player) + "\n")
+    print(f"{str(player)}\n")
     # Read
     user_input = input("What would you like to do (q to quit)? ").lower()
 
     # Evaluate / Parse
     clear()
     is_game_over = evaluate(player, user_input)
+    print()
 # Loop

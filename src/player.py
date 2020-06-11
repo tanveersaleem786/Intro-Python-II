@@ -36,6 +36,13 @@ class Player:
         else:
             print("Sorry, you can't go in that direction")
 
+    def show_inventory(self, *command):
+        if len(self.inventory) > 0:
+            print("You are carrying:\n")
+            print(self.inventory)
+        else:
+            print("You aren't carrying anything")
+
     def take(self, *command):
         cmd_str, item_name = command
 
