@@ -23,7 +23,7 @@ class Room:
             items = "\n"
             items = items.join([self.__SPACER + str(item)
                                 for item in self.items_list])
-            output = output + f"\n\nItems:\n{items}"
+            output = output + f"\n\nItems in view:\n{items}"
 
         return output
 

@@ -18,14 +18,18 @@ class Player:
     def move(self, *command):
         direction, obj_str = command
 
-        move_in: dict = {
+        move_to: dict = {
             "n": self.current_room.n_to,
+            "north": self.current_room.n_to,
             "e": self.current_room.e_to,
+            "east": self.current_room.e_to,
             "s": self.current_room.s_to,
+            "south": self.current_room.s_to,
             "w": self.current_room.w_to,
+            "west": self.current_room.w_to,
         }
 
-        new_room = move_in[direction]
+        new_room = move_to[direction]
         if new_room:
             print(direction)
             self.current_room = new_room
