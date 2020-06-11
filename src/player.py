@@ -16,7 +16,7 @@ class Player:
         return f"Player: [current_room={self.current_room}]"
 
     def move(self, *command):
-        direction, obj_str = command
+        direction = command[0]
 
         move_to: dict = {
             "n": self.current_room.n_to,
@@ -44,7 +44,7 @@ class Player:
             print("You aren't carrying anything")
 
     def take(self, *command):
-        cmd_str, item_name = command
+        item_name = command[1]
 
         if not(item_name):
             print("Umm! You picked up nothing... Congratulations!")
@@ -58,7 +58,7 @@ class Player:
             print(f"There is no {item_name} here!")
 
     def drop(self, *command):
-        cmd_str, item_name = command
+        item_name = command[1]
 
         if not(item_name):
             print("Umm! You need to choose something to drop.")
