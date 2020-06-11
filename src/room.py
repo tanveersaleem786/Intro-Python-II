@@ -7,14 +7,14 @@ from item import Item
 class Room:
     __SPACER: str = "   "
 
-    def __init__(self, name: str, description: str, items: list = []):
+    def __init__(self, name: str, description: str, items: list = None):
         self.name = name
         self.description = description
         self.n_to = None
         self.e_to = None
         self.s_to = None
         self.w_to = None
-        self.items_list = items
+        self.items_list = items or []
 
     def __str__(self):
         output = f"{self.name}\n{fill(self.description)}"
