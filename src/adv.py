@@ -17,8 +17,8 @@ item9 = Item("bottle", "bottle description")
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", [item1, item2]),
-
+                     "North of you, the cave mount beckons and East of you is the basement", [item1, item2]),
+    
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", [item3, item4]),
 
@@ -32,12 +32,17 @@ to north. The smell of gold permeates the air.""", [item6, item7]),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", [item8, item9]),
+
+'basement':  Room("Basement", "You can go west for outside"),
+
 }
 
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].e_to = room['basement']
+room['basement'].w_to = room['outside']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
